@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Handler;
@@ -49,7 +50,9 @@ public class ForegroundService extends Service {
 
         NotificationCompat.Builder notific = new NotificationCompat.Builder(this)
                 .setContentTitle("Antivirus")
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.mipmap.ic_stat_warning)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                        android.R.drawable.ic_dialog_alert))
                 .setContentText("Buscando virus")
                 .setContentText(Html.fromHtml("<b>Analizando</b> <u>búsqueda<i> exahustiva</i></u>"))
                 .setDefaults(Notification.DEFAULT_VIBRATE);

@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.IBinder;
@@ -34,7 +35,9 @@ public class ServicioAntivirus extends Service {
 
         NotificationCompat.Builder notific = new NotificationCompat.Builder(this)
                 .setContentTitle("Antivirus")
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.mipmap.ic_stat_warning)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(),
+                        android.R.drawable.ic_dialog_alert))
                 .setContentText("Presione en iniciar para realizar búsqueda de virus");
 
         //Para lanzar una actividad
@@ -64,7 +67,6 @@ public class ServicioAntivirus extends Service {
                 Toast.LENGTH_SHORT).show();
         startForeground(101, notific.build());
         return START_STICKY;
-
     }
 
     @Override

@@ -17,18 +17,11 @@ public class Servicio extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        /*NotificationManager notificationManager = (NotificationManager)
-                getSystemService(Context.NOTIFICATION_SERVICE);
-        //notificationManager.cancel(2);*/
-
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        /*NotificationManager notificationManager = (NotificationManager)
-                getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.cancel(3);*/
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.example.u1angelgonzalesejercicio2tema4;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -24,22 +25,17 @@ public class Actividad3 extends AppCompatActivity {
         setContentView(R.layout.activity_actividad3);
         mp = MediaPlayer.create(Actividad3.this, R.raw.musica);
         mp.start();
-        /*Handler handler = new Handler();
-        handler.postDelayed(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        //startActivity(new Intent(ForegroundService.this, Actividad3.class));
-                        mp = MediaPlayer.create(Actividad3.this, R.raw.musica);
-                        mp.start();
-                    }
-                }, 5000L);*/
-
     }
 
     public void buscarAntivirus(View view) {
         Intent intent = new Intent(Intent.ACTION_VIEW,
                 Uri.parse("https://play.google.com/store/apps/details?id=com.avast.android.mobilesecurity&hl=es"));
         startActivity(intent);
+    }
+
+    @Override
+    protected void onStop() {
+        mp.stop();
+        super.onStop();
     }
 }
