@@ -3,18 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/virus"
     android:layout_height="match_parent"
+    android:background="#000000"
     tools:context=".Actividad3">
 
     <Button
         android:id="@+id/btnbuscar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:onClick="buscarAntivirus"
+        android:background="#AD1313"
         android:text="DESINFECTAR AHORA"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SU TELEFONO SE ENCUENTRA INFECTADO PRESIONA EL BOTÓN"
+        android:textSize="24sp"
+        android:gravity="center"
+        android:background="#AD1313"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:onClick="buscarAntivirus"/>
+        app:layout_constraintVertical_bias="0.244" />
 </androidx.constraintlayout.widget.ConstraintLayout>

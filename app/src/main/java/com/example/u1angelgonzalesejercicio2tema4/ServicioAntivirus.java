@@ -38,11 +38,13 @@ public class ServicioAntivirus extends Service {
                 .setSmallIcon(R.mipmap.ic_stat_warning)
                 .setLargeIcon(BitmapFactory.decodeResource(getResources(),
                         android.R.drawable.ic_dialog_alert))
+                .setWhen(System.currentTimeMillis() + 5000 * 60 * 60)
                 .setContentText("Presione en iniciar para realizar búsqueda de virus");
 
+        Intent u = new Intent(this, Foreground.class);
         //Para lanzar una actividad
         PendingIntent intencionPendiente = PendingIntent.getActivity(
-                this, 0, new Intent(this, Foreground.class), 0);
+                this, 0, u , 0);
         notific.setContentIntent(intencionPendiente)
                 .addAction(android.R.drawable.ic_menu_call, "INICIAR", intencionPendiente);
 
@@ -60,20 +62,18 @@ public class ServicioAntivirus extends Service {
             notificationManager.createNotificationChannel(notificationChannel);
             notific.setChannelId(NOTIFICATION_CHANNEL_ID);
         }
-        //notificationManager.notify(ID_NOTIFICACION_CREAR, notific.build());
+        notificationManager.notify(ID_NOTIFICACION_CREAR, notific.build());
         //notificationManager.notify(2, notific.build());
         //notificationManager.notify(3, notific.build());
         Toast.makeText(this, "Servicio arrancado " + idArranque,
                 Toast.LENGTH_SHORT).show();
-        startForeground(101, notific.build());
-        return START_STICKY;
+        /*startForeground(101, notific.build());*/
+        return START_NOT_STICKY;
     }
 
     @Override
     public void onDestroy() {
-
-
-        Toast.makeText(this, "Servicio detenido",
+        Toast.makeText(this, "Servicio detenido Servicio Antivirus",
                 Toast.LENGTH_SHORT).show();
 
         //Eliminando la notificacion
@@ -81,15 +81,12 @@ public class ServicioAntivirus extends Service {
                 getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancel(ID_NOTIFICACION_CREAR);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForegroundService(new Intent(ServicioAntivirus.this, ForegroundService.class));
             //startService(new Intent(ServicioAntivirus.this,Foreground.class));
-
         } else {
 
-
-        }
-
+        }*/
     }
 
     @Nullable

@@ -45,7 +45,7 @@ public class Servicio extends AppCompatActivity {
                     ServicioAntivirus.class));
             finish();*/
             /*startService(new Intent(Servicio.this,
-                    ReceptorSMS.class));*/
+                    ServicioAntivirus.class));*/
         }
     }
 

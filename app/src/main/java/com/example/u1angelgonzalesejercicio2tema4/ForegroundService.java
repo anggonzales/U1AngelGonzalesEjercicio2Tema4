@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.text.Html;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -20,9 +21,9 @@ import androidx.core.app.NotificationCompat;
 
 public class ForegroundService extends Service {
 
-    private static final int ID_NOTIFICACION_CREAR = 1;
-    public static final String NOTIFICATION_CHANNEL_ID = "1000";
-    public static final String NOTIFICATION_CHANNEL_NAME = "UNJBG";
+    private static final int ID_NOTIFICACION_CREAR = 2;
+    public static final String NOTIFICATION_CHANNEL_ID = "2000";
+    public static final String NOTIFICATION_CHANNEL_NAME = "UPT";
 
     @Override
     public void onCreate() {
@@ -38,11 +39,13 @@ public class ForegroundService extends Service {
                         i.setClass(getApplicationContext(), Actividad3.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(i);
+                        stopService(new Intent(ForegroundService.this,
+                                ForegroundService.class));
                         //startActivity(new Intent(ForegroundService.this, Actividad3.class));
                         /*mp = MediaPlayer.create(Actividad3.this, R.raw.musica);
                         mp.start();*/
                     }
-                }, 5000);
+                }, 8000);
     }
 
     @Override
@@ -90,13 +93,16 @@ public class ForegroundService extends Service {
 
     @Override
     public void onDestroy() {
-        Toast.makeText(this, "Servicio detenido",
+        Toast.makeText(this, "Servicio detenido Foregrund",
                 Toast.LENGTH_SHORT).show();
 
         //Eliminando la notificacion
         NotificationManager notificationManager = (NotificationManager)
                 getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.cancel(ID_NOTIFICACION_CREAR);
+
+        /*stopService(new Intent(ForegroundService.this,
+                ForegroundService.class));*/
 
         /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForegroundService(new Intent(ForegroundService.this, Actividad3.class));

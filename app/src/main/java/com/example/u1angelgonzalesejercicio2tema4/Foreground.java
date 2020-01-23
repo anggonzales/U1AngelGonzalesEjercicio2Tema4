@@ -22,25 +22,32 @@ public class Foreground extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
                         WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED);
 
+        //stopService(new Intent(Foreground.this,
+                //ServicioAntivirus.class));
+
         intentFilter = new IntentFilter("RESPONSE");
         intentFilter.addCategory(Intent.CATEGORY_DEFAULT);
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             startForegroundService(new Intent(Foreground.this, ForegroundService.class));
-            finish();
+            stopService(new Intent(Foreground.this,
+                    ServicioAntivirus.class));
+            //finish();
             //startForegroundService(new Intent(Servicio.this, ForegroundService.class));
         } else {
             /*startService(new Intent(Servicio.this,
                     ServicioAntivirus.class));
             finish();*/
-            /*startService(new Intent(Servicio.this,
-                    ReceptorSMS.class));*/
+            startService(new Intent(Foreground.this,
+                    ForegroundService.class));
         }
     }
 
     @Override
     protected void onDestroy() {
+        stopService(new Intent(Foreground.this,
+                ForegroundService.class));
         super.onDestroy();
     }
 }
